@@ -1,8 +1,7 @@
 # -*- coding: utf-8 -*-
 ##############################################################################
 #
-#    Copyright (C) 2011 Domsense srl (<http://www.domsense.com>)
-#    Copyright (C) 2011-2013 Agile Business Group sagl
+#    Copyright (C) 2014 Agile Business Group sagl
 #    (<http://www.agilebg.com>)
 #
 #    This program is free software: you can redistribute it and/or modify
@@ -19,4 +18,20 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
-from . import invoice
+
+from openerp.osv import fields, osv
+
+
+class account_config_settings(osv.TransientModel):
+    _inherit = 'account.config.settings'
+
+    _columns = {
+        'group_use_product_description_per_inv_line': fields.boolean(
+            """Allow using only the product description on the
+            invoice order lines""",
+            implied_group="invoice_line_description."
+            "group_use_product_description_per_inv_line",
+            help="""Allows you to use only product description on the
+            invoice order lines."""
+        ),
+    }

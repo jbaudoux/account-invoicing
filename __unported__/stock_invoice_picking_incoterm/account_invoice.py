@@ -1,8 +1,7 @@
 # -*- coding: utf-8 -*-
 ##############################################################################
 #
-#    Copyright (C) 2011 Domsense srl (<http://www.domsense.com>)
-#    Copyright (C) 2011-2013 Agile Business Group sagl
+#    Copyright (C) 2014 Agile Business Group sagl
 #    (<http://www.agilebg.com>)
 #
 #    This program is free software: you can redistribute it and/or modify
@@ -19,4 +18,18 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
-from . import invoice
+
+from openerp.osv import fields, orm
+
+
+class account_invoice(orm.Model):
+    _inherit = "account.invoice"
+
+    _columns = {
+        'incoterm': fields.many2one(
+            'stock.incoterms',
+            'Incoterm',
+            help="International Commercial Terms are a series of predefined "
+            "commercial terms used in international transactions."
+        ),
+    }

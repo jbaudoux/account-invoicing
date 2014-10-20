@@ -1,9 +1,8 @@
 # -*- coding: utf-8 -*-
 ##############################################################################
 #
-#    Copyright (C) 2011 Domsense srl (<http://www.domsense.com>)
-#    Copyright (C) 2011-2013 Agile Business Group sagl
-#    (<http://www.agilebg.com>)
+#    Copyright (C) 2014 Agile Business Group sagl (<http://www.agilebg.com>)
+#    Author: Nicola Malcontenti <nicola.malcontenti@agilebg.com>
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as published
@@ -19,4 +18,18 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
-from . import invoice
+
+from openerp.osv import orm
+
+
+class StockPicking(orm.Model):
+    _inherit = "stock.picking"
+
+    def _prepare_invoice(
+            self, cr, uid, picking, partner,
+            inv_type, journal_id, context=None):
+        invoice_vals = super(StockPicking, self)._prepare_invoice(
+            cr, uid, picking, partner, inv_type, journal_id, context=context)
+        if picking and picking.partner_id:
+            invoice_vals['address_shipping_id'] = picking.partner_id.id
+        return invoice_vals

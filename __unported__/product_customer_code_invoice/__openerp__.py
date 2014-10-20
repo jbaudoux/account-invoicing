@@ -1,9 +1,8 @@
 # -*- coding: utf-8 -*-
 ##############################################################################
 #
-#    Copyright (C) 2011 Domsense srl (<http://www.domsense.com>)
-#    Copyright (C) 2011-2013 Agile Business Group sagl
-#    (<http://www.agilebg.com>)
+#    Copyright (C) 2013 Agile Business Group sagl (<http://www.agilebg.com>)
+#    Author: Nicola Malcontenti <nicola.malcontenti@agilebg.com>
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as published
@@ -20,27 +19,26 @@
 #
 ##############################################################################
 {
-    'name': "Force Invoice Number",
-    'version': '0.1',
-    'category': 'Accounting & Finance',
-    'summary': "Allows to force invoice numbering on specific invoices",
-    'description': """
-This module allows to force the invoice numbering.
-It displays the internal_number field. If user fills that field, the typed
-value will be used as invoice (and move) number.
-Otherwise, the next sequence number will be retrieved and saved.
-So, the new field has to be used when user doesn't want to use the default
-invoice numbering for a specific invoice.
-    """,
-    'author': 'Agile Business Group',
-    'website': 'http://www.agilebg.com',
-    'license': 'AGPL-3',
+    "name": "Product Customer code for account invoice",
+    "version": "1.0",
+    "author": "Agile Business Group",
+    "website": "http://www.agilebg.com",
+    "category": "Account",
     "depends": [
-        'account'
+        'base',
+        'product',
+        'account',
+        'product_customer_code'
     ],
+    "description": """
+    Based on product_customer_code,
+    this module loads in every account invoice
+    the customer code defined in the product,
+    """,
+    "demo": [],
     "data": [
-        'invoice_view.xml'
+        'account_invoice_view.xml',
     ],
-    "active": False,
-    "installable": True,
+    'installable': False,
+    'active': False,
 }

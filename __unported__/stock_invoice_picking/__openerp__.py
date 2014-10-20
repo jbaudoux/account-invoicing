@@ -1,9 +1,7 @@
 # -*- coding: utf-8 -*-
 ##############################################################################
 #
-#    Copyright (C) 2011 Domsense srl (<http://www.domsense.com>)
-#    Copyright (C) 2011-2013 Agile Business Group sagl
-#    (<http://www.agilebg.com>)
+#    Copyright (C) 2013 Agile Business Group sagl (<http://www.agilebg.com>)
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as published
@@ -19,28 +17,25 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
+
 {
-    'name': "Force Invoice Number",
+    'name': "Invoice picking",
     'version': '0.1',
-    'category': 'Accounting & Finance',
-    'summary': "Allows to force invoice numbering on specific invoices",
+    'category': 'Warehouse Management',
     'description': """
-This module allows to force the invoice numbering.
-It displays the internal_number field. If user fills that field, the typed
-value will be used as invoice (and move) number.
-Otherwise, the next sequence number will be retrieved and saved.
-So, the new field has to be used when user doesn't want to use the default
-invoice numbering for a specific invoice.
-    """,
+This module allows to create invoices directly from picking, without having to
+use sale or purchase orders.
+""",
     'author': 'Agile Business Group',
     'website': 'http://www.agilebg.com',
     'license': 'AGPL-3',
-    "depends": [
-        'account'
-    ],
+    "depends": ['stock_picking_invoice_link'],
     "data": [
-        'invoice_view.xml'
+        "stock_view.xml",
+    ],
+    "demo": [],
+    'test': [
     ],
     "active": False,
-    "installable": True,
+    "installable": False
 }

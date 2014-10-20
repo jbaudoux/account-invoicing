@@ -1,9 +1,9 @@
 # -*- coding: utf-8 -*-
 ##############################################################################
 #
-#    Copyright (C) 2011 Domsense srl (<http://www.domsense.com>)
-#    Copyright (C) 2011-2013 Agile Business Group sagl
+#    Copyright (C) 2014 Agile Business Group sagl
 #    (<http://www.agilebg.com>)
+#    @author Alex Comba <alex.comba@agilebg.com>
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as published
@@ -20,27 +20,28 @@
 #
 ##############################################################################
 {
-    'name': "Force Invoice Number",
+    'name': "Stock Invoice Picking Incoterm",
     'version': '0.1',
-    'category': 'Accounting & Finance',
-    'summary': "Allows to force invoice numbering on specific invoices",
+    'category': 'Warehouse Management',
     'description': """
-This module allows to force the invoice numbering.
-It displays the internal_number field. If user fills that field, the typed
-value will be used as invoice (and move) number.
-Otherwise, the next sequence number will be retrieved and saved.
-So, the new field has to be used when user doesn't want to use the default
-invoice numbering for a specific invoice.
-    """,
+This module adds the field incoterm to invoice and picking. In this way the
+user can specify the incoterm directly on these documents, with no need to
+refer to the incoterm of the order (which could even be missing).
+The module extends 'stock_invoice_picking' so that the invoices created
+from pickings will have the same incoterm set in the picking.
+""",
     'author': 'Agile Business Group',
     'website': 'http://www.agilebg.com',
     'license': 'AGPL-3',
-    "depends": [
-        'account'
+    'depends': [
+        'stock_invoice_picking',
     ],
-    "data": [
-        'invoice_view.xml'
+    'data': [
+        'account_invoice_view.xml',
+        'stock_view.xml',
     ],
-    "active": False,
-    "installable": True,
+    'test': [
+        'test/invoice_picking_incoterm.yml',
+    ],
+    'installable': False
 }

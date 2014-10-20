@@ -1,9 +1,9 @@
 # -*- coding: utf-8 -*-
 ##############################################################################
 #
-#    Copyright (C) 2011 Domsense srl (<http://www.domsense.com>)
-#    Copyright (C) 2011-2013 Agile Business Group sagl
+#    Copyright (C) 2014 Agile Business Group sagl
 #    (<http://www.agilebg.com>)
+#    @author Alex Comba <alex.comba@agilebg.com>
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as published
@@ -20,27 +20,27 @@
 #
 ##############################################################################
 {
-    'name': "Force Invoice Number",
+    'name': "Invoice line description",
     'version': '0.1',
-    'category': 'Accounting & Finance',
-    'summary': "Allows to force invoice numbering on specific invoices",
+    'category': 'Generic Modules/Accounting',
     'description': """
-This module allows to force the invoice numbering.
-It displays the internal_number field. If user fills that field, the typed
-value will be used as invoice (and move) number.
-Otherwise, the next sequence number will be retrieved and saved.
-So, the new field has to be used when user doesn't want to use the default
-invoice numbering for a specific invoice.
+This module allows to use only the product description on the invoice
+order lines. To do so, the user has to belong to
+group_use_product_description_per_inv_line.
+This is possible by selecting the related option in the following menu:
+
+Settings --> Configuration --> Invoicing --> Features
     """,
     'author': 'Agile Business Group',
     'website': 'http://www.agilebg.com',
     'license': 'AGPL-3',
     "depends": [
-        'account'
+        'account',
     ],
     "data": [
-        'invoice_view.xml'
+        'security/invoice_security.xml',
+        'res_config_view.xml',
     ],
     "active": False,
-    "installable": True,
+    "installable": False
 }

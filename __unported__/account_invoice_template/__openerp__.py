@@ -1,9 +1,8 @@
 # -*- coding: utf-8 -*-
 ##############################################################################
 #
+#    Copyright (C) 2011 Agile Business Group sagl (<http://www.agilebg.com>)
 #    Copyright (C) 2011 Domsense srl (<http://www.domsense.com>)
-#    Copyright (C) 2011-2013 Agile Business Group sagl
-#    (<http://www.agilebg.com>)
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as published
@@ -20,27 +19,36 @@
 #
 ##############################################################################
 {
-    'name': "Force Invoice Number",
+    'name': "Account Invoice Template",
     'version': '0.1',
-    'category': 'Accounting & Finance',
-    'summary': "Allows to force invoice numbering on specific invoices",
+    'category': 'Generic Modules/Accounting',
     'description': """
-This module allows to force the invoice numbering.
-It displays the internal_number field. If user fills that field, the typed
-value will be used as invoice (and move) number.
-Otherwise, the next sequence number will be retrieved and saved.
-So, the new field has to be used when user doesn't want to use the default
-invoice numbering for a specific invoice.
-    """,
+Templates for Invoices
+
+User can configure invoice templates, useful for recurring invoices.
+The amount of each template line can be computed (through python code)
+or kept as user input. If user input, when using the template, user has to fill
+the amount of every input lines.
+The invoice form allows lo load, through a wizard, the template to use and the
+amounts to fill.
+
+
+Contributors
+------------
+
+Lorenzo Battistini <lorenzo.battistini@agilebg.com>
+Leonardo Pistone <leonardo.pistone@camptocamp.com>
+Franco Tampieri <franco@tampieri.info>
+""",
     'author': 'Agile Business Group',
     'website': 'http://www.agilebg.com',
     'license': 'AGPL-3',
-    "depends": [
-        'account'
-    ],
+    "depends": ['account_move_template'],
     "data": [
-        'invoice_view.xml'
+        'invoice_template.xml',
+        'wizard/select_template.xml',
+        'security/ir.model.access.csv',
     ],
     "active": False,
-    "installable": True,
+    "installable": False
 }
